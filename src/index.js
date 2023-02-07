@@ -3,11 +3,28 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux' // for redux
+import { createStore } from 'redux'
+import birdApp from './store/birds/birds'
+
+const store = createStore(birdApp)
+/* REPLACED:
+const store = createStore(() => ({
+  birds: [
+    {
+      name: 'robin',
+      views: 1
+    }
+  ]
+}))
+*/
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
